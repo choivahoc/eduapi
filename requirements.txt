@@ -31,3 +31,5 @@ flask_sqlalchemy
 sqlalchemy
 psycopg2-binary
 python-jose
+pymongo==3.10.1
+mongoengine==0.20.0
