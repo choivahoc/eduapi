@@ -168,6 +168,7 @@ diplomas = {
     'signature_header_master': '',  # chữ kí hiệu
     'signature_student': '',  # chữ kí sinh viên
     'diploma_image': '',  # ảnh bằng
+    # tạm thời để null
     'transcript': [{
         'transcript_academic': {
             'transcript_academic_id': '',  # Mã môn học
@@ -175,7 +176,7 @@ diplomas = {
             'transcript_academic_number': ''  # Số học tín chỉ, học phần
         },
         'point': '',  # Điểm
-        'user': {  # giáp viên xác nhận học phần
+        'teacher': {  # giáo viên xác nhận học phần
             'user_id': '',  # id user: SV_01, GV_01, ADM_01, GĐ_01
             # chức vụ của user: admin, student, manager, teacher
             'role_user': {
@@ -220,6 +221,7 @@ diplomas = {
 }
 
 # Resumes
+# chưa hiểu để làm gì ?
 Resumes = {
     'transcript_academic': {
         'transcript_academic_id': '',  # Mã môn học
