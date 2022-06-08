@@ -221,16 +221,16 @@ diplomas = {
 }
 
 # Resumes
-# chưa hiểu để làm gì ?
-Resumes = {
+# để enum đỡ phải điền tay
+enum = {
     'transcript_academic': {
         'transcript_academic_id': '',  # Mã môn học
         'transcript_academic_name': '',  # Tên môn học
         'transcript_academic_number': ''  # Số học tín chỉ, học phần
     },
 
-    # Kiến trúc enum {'excellent': 'Giỏi', 'good': 'Khá', 'average': 'Trung bình'}
-    'academic_ability': 'excellent',
+    # Kiến trúc enum
+    'academic_ability': {'excellent': 'Giỏi', 'good': 'Khá', 'average': 'Trung bình'},
 
     # department - Khoa
     'department': {
