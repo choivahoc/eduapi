@@ -1,0 +1,246 @@
+swagger: "2.0"
+info:
+  description: "Authentication API"
+  version: "1.0.0"
+  title: "Authen_API"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "anhbd25@viettel.com.vn"
+host: "127.0.0.1:5000"
+basePath: "/v1"
+tags:
+  - name: "user"
+    description: "Manage user"
+schemes:
+  - "http"
+  - "https"
+paths:
+  /user:
+    get:
+      tags:
+        - "user"
+      summary: "get a user"
+      description: "This api is used to get user."
+      operationId: "get_user"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Response message after successfully get a user"
+          schema:
+            properties:
+              message:
+                type: string
+                example: "user added successfully"
+              user_id:
+                type: string
+                example: "qweqweqweqwe"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.user_controller"
+  
+  
+  /user/add:
+    post:
+      tags:
+        - "user"
+      summary: "add a user"
+      description: "This api is used to add a user."
+      operationId: "add_user"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: argument needed
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: "You can include id field if you want to use your own special id instead of auto-generated id"
+                example: "asdasdasdasd"
+              name:
+                type: string
+                description: "name of the user you want to add (required)"
+                example: "asdasdasd"
+      responses:
+        200:
+          description: "Response message after successfully added a user"
+          schema:
+            properties:
+              message:
+                type: string
+                example: "user added successfully"
+              user_id:
+                type: string
+                example: "qweqweqweqwe"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.user_controller"
+
+  /user/edit:
+    post:
+      tags:
+        - "user"
+      summary: "edit a user"
+      description: "This api is used to edit a user."
+      operationId: "edit_user"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: argument needed
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: "You can include id field if you want to use your own special id instead of auto-generated id"
+                example: "asdasdasdasd"
+              name:
+                type: string
+                description: "name of the user you want to add (required)"
+                example: "asdasdasd"
+      responses:
+        200:
+          description: "Response message after successfully edited a user"
+          schema:
+            properties:
+              message:
+                type: string
+                example: "user edited successfully"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.user_controller"
+
+  /user/delete:
+    post:
+      tags:
+        - "user"
+      summary: "delete a single user"
+      description: "This api is used to delete a user."
+      operationId: "delete_user"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: argument needed
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: "You can search by id"
+                example: "asdasdasdasd"
+      responses:
+        200:
+          description: "Response message after successfully delete a user"
+          schema:
+            properties:
+              message:
+                type: string
+                example: "user deleted successfully"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.user_controller"
+
+definitions:
+  ApiResponseError500:
+    type: "object"
+    properties:
+      error:
+        type: "object"
+        properties:
+          code:
+            type: "integer"
+            example: 500
+          message:
+            type: "string"
+            example: "Internal Issue"
+  ApiResponseError401:
+    type: "object"
+    properties:
+      error:
+        type: "object"
+        properties:
+          code:
+            type: "integer"
+            example: 401
+          message:
+            type: "string"
+            example: "Unauthorized Request."
+  ApiResponseError403:
+    type: "object"
+    properties:
+      error:
+        type: "object"
+        properties:
+          code:
+            type: "integer"
+            example: 403
+          message:
+            type: "string"
+            example: "Invalid Permission"
+  ApiResponseError400:
+    type: "object"
+    properties:
+      error:
+        type: "object"
+        properties:
+          code:
+            type: "integer"
+            example: 400
+          message:
+            type: "string"
+            example: "Error message will be displayed here and tell you the reason why it fails"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
