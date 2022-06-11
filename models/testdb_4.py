@@ -34,7 +34,7 @@ user = {
         'no': '',
         'date_of_issue': '',
         'date_of_exprity': '',
-    },
+    }
     # thông tin trường học
     'school': [{
         'school_name': '',  # tên trường
@@ -53,13 +53,13 @@ user = {
                 # Lớp : vd Công nghệ phần mềm 1, công nghệ thông tin 2
                 'class': [{
                     'class_name': '',
-                    'start_year': '',
-                    'graduate_year': ''
+                    'start_year': ''
+                                  'graduate_year:''
                 },
                     {
                         'class_name': '',
-                        'start-year': '',
-                        'graduate-year': ''
+                        'start-year': ''
+                                      'graduate-year:''
                     }]
             },
                 {
@@ -68,20 +68,20 @@ user = {
                     'class': [{
                         'class_name': '',
                         'start_year': '',
-                        'graduate_year': '',
+                        'graduate_year': ''
                     },
                         {
                             'class_name': '',
                             'start-year': '',
-                            'graduate_year': '',
+                            'graduate_year': ''  # k54
                         }
-                    ]
+                    ],
                 }
             ]
-        }}]
+        }]
 }
 
-# Trường học
+## Trường học
 school = {
     'school_name': '',  # tên trường
     'level_count': '',  # cấp trường : vd tiểu học-1, trung học cơ sở-2, trung học phổ thông-3, đại học-4, học viện-4
@@ -99,13 +99,13 @@ school = {
             'class': [{
                 'class_name': '',
                 'start-year': '',
-                'graduate-year': ''
+                'graduate-year': ''  # k54
             }],
         }]
     }
 }
 
-# Bằng
+## Bằng
 diplomas = {
     'user_id': '',  # id sinh viên
     'graduate_info': [{
@@ -127,7 +127,7 @@ diplomas = {
                 }
             },
             'training_system': '',  # hệ đào tạo : vd cử nhân, kĩ sư, cao đẳng, trung cấp
-            'user': {
+            'student': {
                 'full_name': '',  # tên đầy đủ: vd Nguyễn Bá Hải
                 'date_of_birth': '',  # ngày sinh
                 'province': ''  # Tỉnh
@@ -168,7 +168,6 @@ diplomas = {
     'signature_header_master': '',  # chữ kí hiệu
     'signature_student': '',  # chữ kí sinh viên
     'diploma_image': '',  # ảnh bằng
-    # tạm thời để null
     'transcript': [{
         'transcript_academic': {
             'transcript_academic_id': '',  # Mã môn học
@@ -176,7 +175,7 @@ diplomas = {
             'transcript_academic_number': ''  # Số học tín chỉ, học phần
         },
         'point': '',  # Điểm
-        'teacher': {  # giáo viên xác nhận học phần
+        'teacher': {  # giáp viên xác nhận học phần
             'user_id': '',  # id user: SV_01, GV_01, ADM_01, GĐ_01
             # chức vụ của user: admin, student, manager, teacher
             'role_user': {
@@ -220,26 +219,36 @@ diplomas = {
     ]
 }
 
-# Resumes
-# để enum đỡ phải điền tay
-enum = {
-    'transcript_academic': {
-        'transcript_academic_id': '',  # Mã môn học
-        'transcript_academic_name': '',  # Tên môn học
-        'transcript_academic_number': ''  # Số học tín chỉ, học phần
-    },
+## Resumes
+'transcript_academic': {
+    'transcript_academic_id': '',  # Mã môn học
+    'transcript_academic_name': '',  # Tên môn học
+    'transcript_academic_number': ''  # Số học tín chỉ, học phần
+}
 
-    # Kiến trúc enum
-    'academic_ability': {'excellent': 'Giỏi', 'good': 'Khá', 'average': 'Trung bình'},
+## Kiến trúc enum
+'academic_ability': {
+    'excellent': 'Giỏi',
+    'good': 'Khá'
+            'average': 'Trung bình'
+}
 
-    # department - Khoa
-    'department': {
-        'department_id': '',  # Mã khoa
-        'department_name': ''
-    },
-    # major - Nghành học
-    'major': {
-        'major_id': '',  # Mã nghành
-        'major_name': ''
-    }
+## department - Khoa
+'department': {
+    'department_id': '',  # Mã khoa
+    'department_name': ''
+}
+
+## major - Nghành học
+'major': {
+    'major_id': '',  # Mã nghành
+    'major_name': ''
+}
+
+## role user
+'role_user': {
+    'admin': ' Quản trị',
+    'manager': 'Quản lý',
+    'teacher': 'Giáo viên',
+    'student': 'Sinh viên'
 }
