@@ -17,5 +17,5 @@ TOKEN_EXPIRATION_TIME: 3600         #seconds
 SQLALCHEMY_DATABASE_URI: ""
 SQLALCHEMY_TRACK_MODIFICATIONS: false
 
-SOCIAL_MONGO_DB : 'edunet'
-SOCIAL_MONGO_URI : 'mongodb://localhost:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&3t.uriVersion=3&3t.connection.name=mongo2&3t.ssh=true&3t.sshAddress=146.196.64.122&3t.sshPort=22&3t.sshAuthMode=password&3t.sshUser=hieund&3t.alwaysShowAuthDB=true&3t.alwaysShowDBFromUserRole=true'
+MONGO_DB : 'edunet'
+MONGO_URI : 'mongodb://localhost:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&3t.uriVersion=3&3t.connection.name=mongo2&3t.ssh=true&3t.sshAddress=146.196.64.122&3t.sshPort=22&3t.sshAuthMode=password&3t.sshUser=hieund&3t.alwaysShowAuthDB=true&3t.alwaysShowDBFromUserRole=true'

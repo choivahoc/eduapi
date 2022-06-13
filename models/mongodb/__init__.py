@@ -31,6 +31,10 @@ class BaseModel:
         return db.get_collection(self.collection_name, read_preference=ReadPreference.SECONDARY_PREFERRED).find(
             search_option)
 
+    def find_all(self):
+        db = mongo_client[db_name]
+        return db.get_collection(self.collection_name, read_preference=ReadPreference.SECONDARY_PREFERRED).find()
+
     def find_specify_fields(self, search_option, fields):
         db = mongo_client[db_name]
         projection = dict(_id=0)  # Exclude ID

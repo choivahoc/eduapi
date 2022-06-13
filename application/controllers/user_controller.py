@@ -1,8 +1,36 @@
-from flask import jsonify
+from flask import jsonify, request
+
+from helpers.service_helper import ResponseTemplate
+from models.mongodb.user import Users
 
 
-def get_user():
-    return jsonify({'message': 'get user success'})
+def get_users():
+    args = request.args.to_dict()
+    search_option = dict()
+    if args and args.get('user_type'):
+        search_option.update({
+            'role_user.' + args['user_type']: True
+        })
+    if args and args.get('user_id'):
+        search_option.update({
+            'user_id': args['user_id']
+        })
+    if args and args.get('school_id'):
+        search_option.update({
+            'school': {'$elemMatch': {'school_id': args['school_id']}}
+        })
+    if args and args.get('department_name'):
+        search_option.update({
+            'school': {'$elemMatch': {'department': {'department_name': args.get('department_name')}}}
+        })
+    print(search_option)
+    datas = Users().list_user(search_option)
+    results = list()
+    for data in datas:
+        data.pop('_id')
+        results.append(data)
+    return ResponseTemplate(200, {'message': 'Get list user successfully', 'data': results,
+                                  'count': datas.count()}).return_response()
 
 
 def add_user():

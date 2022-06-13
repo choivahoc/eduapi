@@ -3,9 +3,9 @@ import yaml
 
 
 class Mongo:
-    DB = os.environ.get('SOCIAL_MONGO_DB')
-    URI = os.environ.get('SOCIAL_MONGO_URI')
-    COLLECTION = os.environ.get('SOCIAL_MONGO_COLLECTION')
+    DB = os.environ.get('MONGO_DB')
+    URI = os.environ.get('MONGO_URI')
+    COLLECTION = os.environ.get('MONGO_COLLECTION')
 
 
 def normpath(path):

@@ -1,0 +1,523 @@
+//# Người dùng
+//# Sinh viên 1
+{
+  "user": {
+    "user_id": "SV_01",
+    "role_user": {
+      "admin": false,
+      "manager": false,
+      "teacher": false,
+      "student": true
+    },
+    "full_name": "Nguyễn Văn A",
+    "avatar": "./img/img.png",
+    "user_name": "nguyenvana",
+    "email": "nguyenvana@gmail.com",
+    "password": "123qweaA@",
+    "profile": {
+      "identify_image": "./img/img.png",
+      "signature": "./img/img_2.png",
+      "study_time": "5 năm",
+      "gender": "nam",
+      "date_of_birth": "30-11-1999",
+      "address": "Thôn Lương xá, Xã Hiệp Cường, Huyện Kim Động, Tỉnh Hưng Yên",
+      "city": null,
+      "province": "Hưng Yên",
+      "phone": "0878.592.777",
+      "graduate_active": "not-graduate"
+    },
+    "created_time": null,
+    "updated_time": null,
+    "citizen_identity_card": {
+      "no": 67364736463,
+      "date_of_issue": "30-5-2022",
+      "date_of_exprity": "30-5-2032"
+    },
+    "school": [
+      {
+        "school_name": "đại học FPT",
+        "level_count": "đại học-4",
+        "school_type": "đại học",
+        "is_active": true,
+        "created_time": null,
+        "updated_time": null,
+        "department": {
+          "department_name": "Công nghệ thông tin",
+          "major": [
+            {
+              "major_name": "Kỹ thuật phần mềm",
+              "class": [
+                {
+                  "class_name": "Công nghệ phần mềm 1",
+                  "start_year": 2017,
+                  "graduate_year": 2021
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+
+// Sinh viên 2
+{
+  "user": {
+    "user_id": "SV_02",
+    "role_user": {
+      "admin": false,
+      "manager": false,
+      "teacher": false,
+      "student": true
+    },
+    "full_name": "Trần Văn B",
+    "avatar": "./img/img.png",
+    "user_name": "tranvanb",
+    "email": "tranvanb@gmail.com",
+    "password": "123qweaA@",
+    "profile": {
+      "identify_image": "./img/img.png",
+      "signature": "./img/img_2.png",
+      "study_time": "5 năm",
+      "gender": "nam",
+      "date_of_birth": "26-12-1999",
+      "address": "Thôn An Cư, Xã Lạc Nghiệp, Huyện Vĩnh Yên, Tỉnh Vĩnh Phúc",
+      "city": null,
+      "province": "Vĩnh Phúc",
+      "phone": "0878.435.753",
+      "graduate_active": "not-graduate"
+    },
+    "created_time": null,
+    "updated_time": null,
+    "citizen_identity_card": {
+      "no": 67545434224,
+      "date_of_issue": "30-5-2022",
+      "date_of_exprity": "30-5-2032"
+    },
+    "school": [
+      {
+        "school_name": "đại học FPT",
+        "level_count": "đại học-4",
+        "school_type": "đại học",
+        "is_active": true,
+        "created_time": null,
+        "updated_time": null,
+        "department": {
+          "department_name": "Công nghệ thông tin",
+          "major": [
+            {
+              "major_name": "Kỹ thuật phần mền",
+              "class": [
+                {
+                  "class_name": "Công nghệ phần mềm 1",
+                  "start_year": 2017,
+                  "graduate_year": 2021
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+
+//#Sinh viên 3
+{
+    "user": {
+        "user_id": "SV_03",
+        "role_user": {
+            "admin": false,
+            "manager": false,
+            "teacher": false,
+            "student": true
+        },
+        "full_name": "Phạm Văn C",
+        "avatar": "./img/img.png",
+        "user_name": "phamvanc",
+        "email": "phamvanc@gmail.com",
+        "password": "123qweaA@",
+        "profile": {
+            "identify_image": "./img/img.png",
+            "signature": "./img/img_2.png",
+            "study_time": "5 năm",
+            "gender": "nam",
+            "date_of_birth": "11-11-1999",
+            "address": "Thôn An Nhiên, Xã Hiền Định, Huyện Bắc Hà, Tỉnh Bắc Giang",
+            "city": null,
+            "province": "Bắc Giang",
+            "phone": "0878.432.754",
+            "graduate_active": "not-graduate"
+        },
+        "created_time": null,
+        "updated_time": null,
+        "citizen_identity_card": {
+            "no": 5323543254,
+            "date_of_issue": "30-5-2022",
+            "date_of_exprity": "30-5-2032"
+        },
+        "school": [
+            {
+                "school_name": "đại học FPT",
+                "level_count": "đại học-4",
+                "school_type": "đại học",
+                "is_active": true,
+                "created_time": null,
+                "updated_time": null,
+                "department": {
+                    "department_name": "An Toàn thông tin",
+                    "major": [
+                        {
+                            "major_name": "An Toàn thông tin",
+                            "class": [
+                                {
+                                    "class_name": "An Toàn thông tin 1",
+                                    "start_year": 2017,
+                                    "graduate_year": 2021
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
+
+//#Giáo viên 1
+{
+    "user": {
+        "user_id": "GV_01",
+        "role_user": {
+            "admin": false,
+            "manager": false,
+            "teacher": true,
+            "student": false
+        },
+        "full_name": "Nguyễn Hà D",
+        "avatar": "./img/img_1.png",
+        "user_name": "nguyenhad",
+        "email": "nguyenhad@gmail.com",
+        "password": "123qweaA@",
+        "profile": {
+            "academic_level": "Thạc sĩ",
+            "identify_image": "./img/img_1.png",
+            "signature": "./img/img_2.png",
+            "gender": "nữ",
+            "date_of_birth": "11-11-1978",
+            "address": "Thôn An Hiệp, Xã Tiêu Định, Huyện Nam Hà, Tỉnh Nam Định",
+            "city": null,
+            "province": "Nam Định",
+            "phone": "0878.333.444"
+        },
+        "created_time": null,
+        "updated_time": null,
+        "citizen_identity_card": {
+            "no": 543324343,
+            "date_of_issue": "30-5-2022",
+            "date_of_exprity": "30-5-2032"
+        },
+        "school": [
+            {
+                "school_name": "đại học FPT",
+                "level_count": "đại học-4",
+                "school_type": "đại học",
+                "is_active": true,
+                "created_time": null,
+                "updated_time": null,
+                "department": {
+                    "department_name": "An Toàn thông tin"
+                }
+            }
+        ]
+    }
+}
+
+
+//#Giáo viên 2
+{
+    "user": {
+        "user_id": "GV_02",
+        "role_user": {
+            "admin": false,
+            "manager": false,
+            "teacher": true,
+            "student": false
+        },
+        "full_name": "Phạm Băng N",
+        "avatar": "./img/img_1.png",
+        "user_name": "phambangn",
+        "email": "phambangn@gmail.com",
+        "password": "123qweaA@",
+        "profile": {
+            "academic_level": "Tiến sĩ",
+            "identify_image": "./img/img_1.png",
+            "signature": "./img/img_2.png",
+            "gender": "nữ",
+            "date_of_birth": "11-11-1973",
+            "address": "Thôn An Lành, Xã Tiêu Điều, Huyện Nam Sơn, Tỉnh Thái Bình",
+            "city": null,
+            "province": "Thái Bình",
+            "phone": "0878.333.232"
+        },
+        "created_time": null,
+        "updated_time": null,
+        "citizen_identity_card": {
+            "no": 323232,
+            "date_of_issue": "30-5-2022",
+            "date_of_exprity": "30-5-2032"
+        },
+        "school": [
+            {
+                "school_name": "đại học FPT",
+                "level_count": "đại học-4",
+                "school_type": "đại học",
+                "is_active": true,
+                "created_time": null,
+                "updated_time": null,
+                "department": {
+                    "department_name": "Công nghệ thông tin"
+                }
+            }
+        ]
+    }
+}
+
+//#Giáo viên 3
+{
+    "user": {
+        "user_id": "GV_03",
+        "role_user": {
+            "admin": false,
+            "manager": false,
+            "teacher": true,
+            "student": false
+        },
+        "full_name": "Phạm Nam P",
+        "avatar": "./img/img_1.png",
+        "user_name": "phamnamp",
+        "email": "phamnamp@gmail.com",
+        "password": "123qweaA@",
+        "profile": {
+            "academic_level": "Tiến sĩ",
+            "identify_image": "./img/img_1.png",
+            "signature": "./img/img_2.png",
+            "gender": "nữ",
+            "date_of_birth": "11-12-1979",
+            "address": "Thôn Bình Lành, Xã Hà Điều, Huyện Nam Yên, Tỉnh Hà Giang",
+            "city": null,
+            "province": "Hà Giang",
+            "phone": "0878.343.222"
+        },
+        "created_time": null,
+        "updated_time": null,
+        "citizen_identity_card": {
+            "no": 5464,
+            "date_of_issue": "30-5-2022",
+            "date_of_exprity": "30-5-2032"
+        },
+        "school": [
+            {
+                "school_name": "đại học FPT",
+                "level_count": "đại học-4",
+                "school_type": "đại học",
+                "is_active": true,
+                "created_time": null,
+                "updated_time": null,
+                "department": {
+                    "department_name": "Công nghệ thông tin"
+                }
+            }
+        ]
+    }
+}
+
+
+
+
+
+
+//# Trường học
+{
+    "school": {
+        "school_name": "đại học FPT",
+        "level_count": "đại học-4",
+        "school_type": "đại học",
+        "is_active": true,
+        "created_time": null,
+        "updated_time": null,
+        "department": [
+            {
+                "department_name": "An Toàn thông tin",
+                "major": [
+                    {
+                        "major_name": "An Toàn thông tin",
+                        "class": [
+                            {
+                                "class_name": "An Toàn thông tin 1",
+                                "start_year": 2017,
+                                "graduate_year": 2021
+                            },
+                            {
+                                "class_name": "An Toàn thông tin 2",
+                                "start_year": 2017,
+                                "graduate_year": 2021
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "department_name": "Công nghệ thông tin",
+                "major": [
+                    {
+                        "major_name": "Kỹ thuật phần mền",
+                        "class": [
+                            {
+                                "class_name": "Công nghệ phần mềm 1",
+                                "start_year": 2017,
+                                "graduate_year": 2021
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+
+
+
+
+//#Bằng
+{
+    "diplomas": {
+        "user_id": "SV_01",
+        "graduate_info": [
+            {
+                "vi": {
+                    "tile": "cộng hòa xã hội chủ nghĩa việt nam độc lập - tự do - hạnh phúc",
+                    "school": {
+                        "school_name": "Đại học FPT",
+                        "level_count": "đại học-4",
+                        "school_type": "đại học",
+                        "department": {
+                            "department_name": "Công nghệ thông tin",
+                            "major": {
+                                "major_name": "Kỹ thuật phần mềm"
+                            }
+                        }
+                    },
+                    "training_system": "cử nhân",
+                    "user": {
+                        "full_name": "Nguyễn Văn A",
+                        "date_of_birth": "30-11-1999",
+                        "province": "Hưng Yên"
+                    }
+                },
+                "en": {
+                    "tile": "socialist republic of vietnam independence - freedom - happiness",
+                    "school": {
+                        "school_name": "FPT university",
+                        "level_count": "university-4",
+                        "school_type": "university",
+                        "department": {
+                            "department_name": "infomation technology",
+                            "major": {
+                                "major_name": "Software technology"
+                            }
+                        }
+                    },
+                    "training_system": "bachelor",
+                    "user": {
+                        "full_name": "Nguyễn Văn A",
+                        "date_of_birth": "30-11-1999",
+                        "province": "Hưng Yên"
+                    }
+                }
+            }
+        ],
+        "academic_ability": "khá",
+        "awarded_place": 'Hà Nội',
+        "awarded_date": "27-6-2022",
+        "degree_awarder": "Hiệu trưởng Nguyễn Hữu Đức",
+        "id_graduate_certification": "C620911",
+        "graduate_certification_date": "27-5-2022",
+        "signature_header_master": "./img/img_2.png",
+        "signature_student": "./img/img_2.png",
+        "diploma_image": "./img/img_3.png",
+        "transcript": [
+            {
+                "transcript_academic": {
+                    "transcript_academic_id": null,
+                    "transcript_academic_name": null,
+                    "transcript_academic_number": null
+                },
+                "point": null,
+                "teacher": {
+                    "user_id": null,
+                    "role_user": {
+                        "admin": null,
+                        "manager": null,
+                        "teacher": null,
+                        "student": null
+                    },
+                    "full_name": null,
+                    "profile": {
+                        "academic_level": null,
+                        "identify_image": null,
+                        "signature": null
+                    }
+                }
+            },
+            {
+                "transcript_academic": {
+                    "transcript_academic_id": null,
+                    "transcript_academic_name": null,
+                    "transcript_academic_number": null
+                },
+                "point": null,
+                "user": {
+                    "user_id": null,
+                    "role_user": {
+                        "admin": null,
+                        "manager": null,
+                        "teacher": null,
+                        "student": null
+                    },
+                    "full_name": null,
+                    "profile": {
+                        "academic_level": null,
+                        "identify_image": null,
+                        "signature": null
+                    }
+                }
+            }
+        ]
+    }
+}
+
+
+# Resumes
+# để enum đỡ phải điền tay
+{
+"enum": {
+"transcript_academic": {
+"transcript_academic_id":null,
+"transcript_academic_name": null,
+"transcript_academic_number": null
+},
+"academic_ability": {
+"excellent": "Giỏi", "good": "Khá", "average": "Trung bình"},
+"department": {
+"department_id": null,
+"department_name": null
+},
+"major": {
+"major_id": "",
+"major_name": ""
+}
+}
+}

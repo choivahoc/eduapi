@@ -21,11 +21,24 @@ paths:
         - "user"
       summary: "get a user"
       description: "This api is used to get user."
-      operationId: "get_user"
+      operationId: "get_users"
       consumes:
         - "application/json"
       produces:
         - "application/json"
+      parameters:
+        - in: query
+          name: user_type
+          type: string
+        - in: query
+          name: user_id
+          type: string
+        - in: query
+          name: school_id
+          type: string
+        - in: query
+          name: department_name
+          type: string
       responses:
         200:
           description: "Response message after successfully get a user"
@@ -33,10 +46,10 @@ paths:
             properties:
               message:
                 type: string
-                example: "user added successfully"
-              user_id:
+                example: " get user successfully"
+              data:
                 type: string
-                example: "qweqweqweqwe"
+                example: "{}"
         401:
           description: "Unauthorized Request"
           schema:
