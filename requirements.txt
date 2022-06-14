@@ -33,3 +33,4 @@ psycopg2-binary
 python-jose
 pymongo==3.10.1
 mongoengine==0.20.0
+passlib==1.7.1

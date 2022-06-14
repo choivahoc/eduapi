@@ -27,3 +27,9 @@ class Schools(Document, BaseModel):
             'created_time': self.created_time,
             'updated_time': self.updated_time
         }
+
+    def list_school(self, search_option):
+        try:
+            return self.find(search_option)
+        except Exception as e:
+            print('Users::list_all_user():message error: %s' % str(e))

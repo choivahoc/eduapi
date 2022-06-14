@@ -5,12 +5,14 @@ info:
   title: "Authen_API"
   termsOfService: "http://swagger.io/terms/"
   contact:
-    email: "anhbd25@viettel.com.vn"
-host: "127.0.0.1:5000"
+    email: "hieund46@fsoft.com.vn"
+host: "127.0.0.1:8080"
 basePath: "/v1"
 tags:
   - name: "user"
     description: "Manage user"
+  - name: "shools"
+    description: "Manage shools"
 schemes:
   - "http"
   - "https"
@@ -204,6 +206,46 @@ paths:
           schema:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.user_controller"
+  # schools
+  /schools:
+    get:
+      tags:
+        - "user"
+      summary: "get a schools"
+      description: "This api is used to get schools."
+      operationId: "get_schools"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: school_id
+          type: string
+      responses:
+        200:
+          description: "Response message after successfully get a schools"
+          schema:
+            properties:
+              message:
+                type: string
+                example: " get user successfully"
+              data:
+                type: string
+                example: "{}"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.schools_controller"
 
 definitions:
   ApiResponseError500:

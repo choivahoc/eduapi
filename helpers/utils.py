@@ -1,5 +1,7 @@
+import hashlib
 import os
 import yaml
+from passlib.handlers.pbkdf2 import pbkdf2_sha256
 
 
 class Mongo:
@@ -70,3 +72,20 @@ def load_config(from_file=None, env=True):
         return update_config_from_environment(config)
     else:
         return config
+
+
+def hashsum_password_local(password, user_name):
+    """
+    has password, salt = md5 of username
+    :param password:
+    :param user_name:
+    :return:
+    """
+    try:
+        m = hashlib.md5()
+        m.update(user_name.encode('utf-8'))
+        hash = pbkdf2_sha256.encrypt(password, salt=m.hexdigest().encode('utf-8'), rounds=3615)
+        return hash[hash.rfind("$") + 1:]
+    except Exception as e:
+        print(e)
+        return None
