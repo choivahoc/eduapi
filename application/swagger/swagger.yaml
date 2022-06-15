@@ -13,6 +13,8 @@ tags:
     description: "Manage user"
   - name: "shools"
     description: "Manage shools"
+  - name: "login"
+    description: "Manage login"
 schemes:
   - "http"
   - "https"
@@ -246,6 +248,111 @@ paths:
           schema:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.schools_controller"
+
+  # login
+  /login:
+    post:
+      tags:
+        - "login"
+      summary: "login"
+      description: "This api is used to login"
+      operationId: "login"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: arguments needed
+          schema:
+            type: object
+            properties:
+              username:
+                type: "string"
+                description: "username to login local"
+                example: "is_hieund"
+              password:
+                type: "string"
+                description: "password from user to login local"
+                example: "123qweA#"
+      responses:
+        200:
+          description: "Response message after successfully get a schools"
+          schema:
+            properties:
+              message:
+                type: string
+                example: " get user successfully"
+              data:
+                type: string
+                example: "{}"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.login_controller"
+
+  /user/create_account:
+    post:
+      tags:
+        - "user"
+      summary: "user"
+      description: "This api is used to create user"
+      operationId: "create_account"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: arguments needed
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: "string"
+                description: "user_id to create account"
+                example: "is_hieund"
+              username:
+                type: "string"
+                description: "username to login"
+                example: "is_hieund"
+              password:
+                type: "string"
+                description: "password from user to login"
+                example: "123qweA#"
+      responses:
+        200:
+          description: "Response message after successfully get a schools"
+          schema:
+            properties:
+              message:
+                type: string
+                example: " get user successfully"
+              data:
+                type: string
+                example: "{}"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.user_controller"
 
 definitions:
   ApiResponseError500:

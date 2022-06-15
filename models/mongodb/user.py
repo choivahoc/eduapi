@@ -37,7 +37,7 @@ class Users(Document, BaseModel):
             'school': self.school
         }
 
-    def create_user(self, data_user):
+    def create_account(self, data_user):
         try:
             print('Users::create_user():data_user: %s' % str(data_user))
             self.insert(data_user)

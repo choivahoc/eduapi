@@ -1,6 +1,8 @@
 from flask import jsonify, request
 
+from application.exceptions import InvalidParameter
 from helpers.service_helper import ResponseTemplate
+from helpers.utils import hashsum_password_local
 from models.mongodb.user import Users
 
 
@@ -43,3 +45,28 @@ def edit_user():
 
 def delete_user():
     return jsonify({'message': 'delete user success'})
+
+
+def create_account():
+    args = request.json
+    search_option = dict()
+    username = args.get('username')
+    password = args.get('password')
+    user_id = args.get('user_id')
+    user = Users().find_one({'user_id': user_id})
+    check_user = Users().find({'user_id': {'$ne': user_id}, 'username': username})
+    print('check_user')
+    print(check_user.count())
+    print({'user_id': {'$ne': user_id}, 'username': username})
+    if check_user.count():
+        raise InvalidParameter(error_code=4001000, params='username')
+
+    if user:
+        hash_password = hashsum_password_local(password, username)
+        print(hash_password)
+        user['password'] = hash_password
+        user['username'] = username
+        Users().update_user(user, user_id)
+    else:
+        raise InvalidParameter(error_code=4001000, params='user_id')
+    return ResponseTemplate(200, {'message': 'Create account successfully'}).return_response()
