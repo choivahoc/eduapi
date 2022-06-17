@@ -8,6 +8,7 @@ from models.mongodb.user import Users
 
 def login():
     args = request.json
+    role = args.get('role')
     username = args.get('username')
     password = args.get('password')
     user = Users().find_one({'username': username})
@@ -15,8 +16,8 @@ def login():
         hash_password = hashsum_password_local(password, username)
         print('hash_password')
         print(hash_password)
-        if user.get('password') == hash_password:
-            token = hashsum_password_local('manager', 'manager')
+        if user.get('password') == hash_password and user.get('role_user').get(role) == True:
+            token = hashsum_password_local('role', 'role')
             print(token)
             return ResponseTemplate(200, {'message': 'Get list user successfully', 'token': token}).return_response()
         else:

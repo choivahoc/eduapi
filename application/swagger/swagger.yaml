@@ -2,10 +2,7 @@ swagger: "2.0"
 info:
   description: "Authentication API"
   version: "1.0.0"
-  title: "Authen_API"
-  termsOfService: "http://swagger.io/terms/"
-  contact:
-    email: "hieund46@fsoft.com.vn"
+  title: "Edunet"
 host: "127.0.0.1:8080"
 basePath: "/v1"
 tags:
@@ -267,14 +264,18 @@ paths:
           schema:
             type: object
             properties:
+              role:
+                type: "string"
+                description: "role to login"
+                example: "student"
               username:
                 type: "string"
                 description: "username to login local"
-                example: "is_hieund"
+                example: "hieund"
               password:
                 type: "string"
                 description: "password from user to login local"
-                example: "123qweA#"
+                example: "123qweaA@"
       responses:
         200:
           description: "Response message after successfully get a schools"

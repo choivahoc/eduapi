@@ -33,8 +33,9 @@ def create_app(config=None):
 
     if swagger_file:
         swagger_dir, swagger_filename = os.path.split(swagger_file)
+        options = {"swagger_ui": True}
         app = connexion.App(__name__,
-                            specification_dir=swagger_dir)
+                            specification_dir=swagger_dir, options=options)
         app.add_api(swagger_filename)
 
     else:
