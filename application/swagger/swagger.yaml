@@ -64,7 +64,42 @@ paths:
           schema:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.user_controller"
-  
+
+  /user/self:
+    get:
+      tags:
+        - "user"
+      summary: "get self user info"
+      description: "This api is used get self user info."
+      operationId: "self_user_info"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Response message after successfully get a user"
+          schema:
+            properties:
+              message:
+                type: string
+                example: "Get user successfully"
+              data:
+                type: string
+                example: "data:{}"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.user_controller"
   
   /user/add:
     post:

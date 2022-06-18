@@ -8,9 +8,16 @@ from models import User, Tenant, db
 import time
 
 
+def encode_jwt(payload):
+    private_key = current_app.config.get('PRIVATE_KEY')
+    encoded = jwt.encode(payload, private_key.encode(), algorithm='RS256')
+    return encoded
+
+
 def verify_token(token, public_key):
     try:
-        jwt.decode(token, public_key.encode(), algorithms='RS256')
+        data = jwt.decode(token, public_key.encode(), algorithms='RS256', options={'verify_aud': False})
+        print(data)
     except jwt.exceptions.InvalidSignatureError as e:
         raise Unauthorized(error_code=4011000)
     except jwt.exceptions.InvalidAudienceError as e:
@@ -24,29 +31,28 @@ def verify_token(token, public_key):
         raise Unauthorized()
 
 
-def validate_id_token(token):
-    try:
-        key = current_app.config['IS_KEY']
-        jose_jwt.decode(token, key, algorithms='RS256', options={"verify_at_hash": False, 'verify_aud': False})
-    except Exception as e:
-        current_app.logger.error(e)
-        abort(400, {"message": "The id_token received from IS does not match the signature provided in the config"})
-
-
 def validate_token(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         current_user = get_current_user()
-
-        if current_user['access_from'] != current_app.config['CLIENT_MASTER_NAME']:
-            abort(400, {'message': "You can only access this api in MASTER app client"})
 
         return f(current_user, *args, **kwargs)
 
     return decorated
 
 
-def get_current_user(refresh_mode=False):
+def generate_token(username, user_id, role):
+    jwt_message = {'username': username,
+                   'user_id': user_id,
+                   'user_role': role,
+                   'exp': datetime.datetime.utcnow() + datetime.timedelta(
+                       seconds=current_app.config.get('TOKEN_EXPIRATION_TIME'))}
+
+    session_token = encode_jwt(jwt_message)
+    return session_token
+
+
+def get_current_user():
     token = None
 
     if 'Authorization' in request.headers:
@@ -58,16 +64,15 @@ def get_current_user(refresh_mode=False):
     if token.startswith('Bearer '):
         token = token[7:]
 
-    public_key = current_app.config['GATEKEEPER_PUBLIC_KEY']
+    public_key = current_app.config['PUBLIC_KEY']
     verify_token(token, public_key)
 
     try:
-        data = jwt.decode(token, options={"verify_signature": False})
+        data = jwt.decode(token, public_key.encode(), algorithms='RS256', options={'verify_aud': False})
         current_user = {
-            'm_role': data['user_role'],
-            'name': data['user_name'],
-            'tenant': data['user_tenant'],
-            'access_from': data['client_id']
+            'role': data['user_role'],
+            'name': data['username'],
+            'user_id': data['user_id']
         }
     except Exception as e:
         raise Unauthorized()

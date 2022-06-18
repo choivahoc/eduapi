@@ -75,6 +75,6 @@ class Users(Document, BaseModel):
             search_option = {
                 'user_id': user_id
             }
-            return self.find(search_option)
+            return self.find_one(search_option)
         except Exception as e:
             print('Users::list_all_user():message error: %s' % str(e))

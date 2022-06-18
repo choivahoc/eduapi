@@ -1,6 +1,7 @@
 from flask import jsonify, request
 
 from application.exceptions import InvalidParameter
+from application.security_jwt import generate_token
 from helpers.utils import hashsum_password_local
 from helpers.service_helper import ResponseTemplate
 from models.mongodb.user import Users
@@ -17,7 +18,7 @@ def login():
         print('hash_password')
         print(hash_password)
         if user.get('password') == hash_password and user.get('role_user').get(role) == True:
-            token = hashsum_password_local('role', 'role')
+            token = generate_token(username, user.get('user_id'), role)
             print(token)
             return ResponseTemplate(200, {'message': 'Get list user successfully', 'token': token}).return_response()
         else:

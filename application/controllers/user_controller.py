@@ -1,6 +1,7 @@
 from flask import jsonify, request
 
 from application.exceptions import InvalidParameter
+from application.security_jwt import validate_token
 from helpers.service_helper import ResponseTemplate
 from helpers.utils import hashsum_password_local
 from models.mongodb.user import Users
@@ -70,3 +71,11 @@ def create_account():
     else:
         raise InvalidParameter(error_code=4001000, params='user_id')
     return ResponseTemplate(200, {'message': 'Create account successfully'}).return_response()
+
+
+@validate_token
+def self_user_info(current_user):
+    user_id = current_user['user_id']
+    data = Users().get_user(user_id)
+    data.pop('_id')
+    return ResponseTemplate(200, {'message': 'Get user successfully', 'data': data}).return_response()

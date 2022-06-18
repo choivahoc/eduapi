@@ -17,5 +17,29 @@ TOKEN_EXPIRATION_TIME: 3600         #seconds
 SQLALCHEMY_DATABASE_URI: ""
 SQLALCHEMY_TRACK_MODIFICATIONS: false
 
+PUBLIC_KEY: |
+  -----BEGIN PUBLIC KEY-----
+  MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC9e+SyRUVZP8hr5PFWvLCLlz+J
+  o0hPM2ksaXcT7vEv24sk4JeMbsZQkHctqN85uuptjizn3rGq1j0p34JZulNipYjq
+  9vDwIWZRzD+VDZz5YNl8kJIjlVplrlO43lSgm8gvfXsVUwTACf6ZfrWNGC0g3eqE
+  rsyhe/HvipQsQ2ZmMQIDAQAB
+  -----END PUBLIC KEY-----
+
+PRIVATE_KEY: |
+  -----BEGIN RSA PRIVATE KEY-----
+  MIICXQIBAAKBgQC9e+SyRUVZP8hr5PFWvLCLlz+Jo0hPM2ksaXcT7vEv24sk4JeM
+  bsZQkHctqN85uuptjizn3rGq1j0p34JZulNipYjq9vDwIWZRzD+VDZz5YNl8kJIj
+  lVplrlO43lSgm8gvfXsVUwTACf6ZfrWNGC0g3eqErsyhe/HvipQsQ2ZmMQIDAQAB
+  AoGAP17WB4D/Rm/8eYkh5Z5JdQXqa/+9yS8qd332IyaAZz8HdBfg10ic7ojCMvUN
+  YuNOT8GC5zElPjtUTVLA531XMUw/0hEcmiF8tai0wsqsG65llsco0CPxe24A5kOn
+  f2tSeqSikuGHpwjLgqw+f95OmFJVzKWqTJO2DDkxdWLNJAECQQD4qKnyqCNGkojG
+  40UYxD7pUrYe87NvbpyU3iQs+z0bht6Dv9PKZdKuCn0X124UfhHztuMhQlPlNU0N
+  Ap4j6N3RAkEAwxP+AoxFq61qQc+TTzEYKDp94Sqs0/qySG6X1wIIqyUZG/Z0ktie
+  ibt+Nk/zvhzpe0m3zDQaRGjeBScNFJk6YQJAHDS1omrkJXs1vKnHCrooELtrITOv
+  pPI9HL3eCKQvGFJCJ1u5IHpQXaGe8vdi6zwpuSWDuiAV+CgFp3Ymjhg6IQJBAKsj
+  INXvZTelHPC7P8pbkYvJNKGSpKga6MjubLqtCBnMo+iKH96rtvmxyJmxLm38Q0Br
+  fZjhpKGbNhtjFPCbNEECQQCd3pzqK1Mi2tTECL3ZVMsUXgu+WKEPgSnO4o9sWv4w
+  U8D4Ou6LXsSyqhR5gBz/NFwMGEIi//RUGUzQf1OxKbyA
+  -----END RSA PRIVATE KEY-----
 MONGO_DB : 'edunet'
 MONGO_URI : 'mongodb://localhost:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&3t.uriVersion=3&3t.connection.name=mongo2&3t.ssh=true&3t.sshAddress=146.196.64.122&3t.sshPort=22&3t.sshAuthMode=password&3t.sshUser=hieund&3t.alwaysShowAuthDB=true&3t.alwaysShowDBFromUserRole=true'
