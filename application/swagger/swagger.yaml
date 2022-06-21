@@ -8,10 +8,14 @@ basePath: "/v1"
 tags:
   - name: "user"
     description: "Manage user"
-  - name: "shools"
-    description: "Manage shools"
+  - name: "schools"
+    description: "Manage schools"
   - name: "login"
     description: "Manage login"
+  - name: "diplomas"
+    description: "Manage diplomas"
+  - name: "major department"
+    description: "Manage diplomas"
 schemes:
   - "http"
   - "https"
@@ -65,43 +69,6 @@ paths:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.user_controller"
 
-  /user/self:
-    get:
-      tags:
-        - "user"
-      summary: "get self user info"
-      description: "This api is used get self user info."
-      operationId: "self_user_info"
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      responses:
-        200:
-          description: "Response message after successfully get a user"
-          schema:
-            properties:
-              message:
-                type: string
-                example: "Get user successfully"
-              data:
-                type: string
-                example: "data:{}"
-        401:
-          description: "Unauthorized Request"
-          schema:
-            $ref: "#/definitions/ApiResponseError401"
-        403:
-          description: "Invalid Permission"
-          schema:
-            $ref: "#/definitions/ApiResponseError403"
-        400:
-          description: "User's Error"
-          schema:
-            $ref: "#/definitions/ApiResponseError400"
-      x-swagger-router-controller: "application.controllers.user_controller"
-  
-  /user/add:
     post:
       tags:
         - "user"
@@ -151,13 +118,13 @@ paths:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.user_controller"
 
-  /user/edit:
+  /students_by_class:
     post:
       tags:
         - "user"
-      summary: "edit a user"
-      description: "This api is used to edit a user."
-      operationId: "edit_user"
+      summary: "get list student by class"
+      description: "This api is used to get list student by class."
+      operationId: "get_student_info_by_class"
       consumes:
         - "application/json"
       produces:
@@ -168,22 +135,22 @@ paths:
           schema:
             type: object
             properties:
-              id:
+              user_id:
                 type: string
-                description: "You can include id field if you want to use your own special id instead of auto-generated id"
+                description: "student_id of the user you want to search "
                 example: "asdasdasdasd"
-              name:
+              class_name:
                 type: string
-                description: "name of the user you want to add (required)"
+                description: "class_name of the student you want to search (required)"
                 example: "asdasdasd"
       responses:
         200:
-          description: "Response message after successfully edited a user"
+          description: "Response message after successfully added a user"
           schema:
             properties:
               message:
                 type: string
-                example: "user edited successfully"
+                example: "Edit point successfully"
         401:
           description: "Unauthorized Request"
           schema:
@@ -198,35 +165,28 @@ paths:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.user_controller"
 
-  /user/delete:
-    post:
+  /user/self:
+    get:
       tags:
         - "user"
-      summary: "delete a single user"
-      description: "This api is used to delete a user."
-      operationId: "delete_user"
+      summary: "get self user info"
+      description: "This api is used get self user info."
+      operationId: "self_user_info"
       consumes:
         - "application/json"
       produces:
         - "application/json"
-      parameters:
-        - in: body
-          name: argument needed
-          schema:
-            type: object
-            properties:
-              id:
-                type: string
-                description: "You can search by id"
-                example: "asdasdasdasd"
       responses:
         200:
-          description: "Response message after successfully delete a user"
+          description: "Response message after successfully get a user"
           schema:
             properties:
               message:
                 type: string
-                example: "user deleted successfully"
+                example: "Get user successfully"
+              data:
+                type: string
+                example: "data:{}"
         401:
           description: "Unauthorized Request"
           schema:
@@ -240,11 +200,88 @@ paths:
           schema:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.user_controller"
+
+  /majors:
+    get:
+      tags:
+        - "major department"
+      summary: "get major"
+      description: "This api is used get major info."
+      operationId: "list_major"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: department_id
+          type: string
+      responses:
+        200:
+          description: "Response message after successfully get a user"
+          schema:
+            properties:
+              message:
+                type: string
+                example: "Get user successfully"
+              data:
+                type: string
+                example: "data:{}"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.major_department_controller"
+
+  /departments:
+    get:
+      tags:
+        - "major department"
+      summary: "get major"
+      description: "This api is used get list_department info."
+      operationId: "list_department"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Response message after successfully get a user"
+          schema:
+            properties:
+              message:
+                type: string
+                example: "Get user successfully"
+              data:
+                type: string
+                example: "data:{}"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.major_department_controller"
+
   # schools
   /schools:
     get:
       tags:
-        - "user"
+        - "schools"
       summary: "get a schools"
       description: "This api is used to get schools."
       operationId: "get_schools"
@@ -280,6 +317,98 @@ paths:
           schema:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.schools_controller"
+
+  # schools
+  /diplomas:
+    get:
+      tags:
+        - "diplomas"
+      summary: "get a diplomas"
+      description: "This api is used to get diplomas."
+      operationId: "get_diplomas"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: diplomas_id
+          type: string
+      responses:
+        200:
+          description: "Response message after successfully get a schools"
+          schema:
+            properties:
+              message:
+                type: string
+                example: " get user successfully"
+              data:
+                type: string
+                example: "{}"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.diplomas_controller"
+
+  /diplomas/point:
+    post:
+      tags:
+        - "diplomas"
+      summary: "edit or create point"
+      description: "This api is used to edit or create point user."
+      operationId: "upsert_diplomas_point"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: argument needed
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+                description: "user_id of the user you want to add "
+                example: "asdasdasdasd"
+              transcript_academic_id:
+                type: string
+                description: "transcript_academic_id of the user you want to add (required)"
+                example: "asdasdasd"
+              point:
+                type: string
+                description: "point of the user you want to add (required)"
+                example: "asdasdasd"
+      responses:
+        200:
+          description: "Response message after successfully added a user"
+          schema:
+            properties:
+              message:
+                type: string
+                example: "Edit point successfully"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.diplomas_controller"
 
   # login
   /login:

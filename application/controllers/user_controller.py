@@ -4,10 +4,12 @@ from application.exceptions import InvalidParameter
 from application.security_jwt import validate_token
 from helpers.service_helper import ResponseTemplate
 from helpers.utils import hashsum_password_local
+from models.mongodb.diplomas import Diplomas
 from models.mongodb.user import Users
 
 
-def get_users():
+@validate_token
+def get_users(current_user):
     args = request.args.to_dict()
     search_option = dict()
     if args and args.get('user_type'):
@@ -24,24 +26,34 @@ def get_users():
         })
     if args and args.get('department_name'):
         search_option.update({
-            'school': {'$elemMatch': {'department': {'department_name': args.get('department_name')}}}
+            "school.department.department_name": args.get('department_name')
         })
-    print(search_option)
-    datas = Users().list_user(search_option)
+        datas = Users().aggregate_data([{"$match": search_option}])
+    else:
+        datas = Users().list_user(search_option)
     results = list()
     for data in datas:
         data.pop('_id')
         results.append(data)
     return ResponseTemplate(200, {'message': 'Get list user successfully', 'data': results,
-                                  'count': datas.count()}).return_response()
+                                  'count': len(results)}).return_response()
 
 
-def add_user():
-    return jsonify({'message': 'add user success'})
+@validate_token
+def add_user(current_user):
+    args = request.json
+    user_data = args.get('user_data')
+    Users().insert_document(user_data)
+    return ResponseTemplate(200, {'message': 'Create user successfully'}).return_response()
 
 
-def edit_user():
-    return jsonify({'message': 'edit user success'})
+@validate_token
+def edit_user(current_user, user_id):
+    args = request.json
+    user_data = args.get('user_data')
+    search_option = {"user_id": user_id}
+    Users().upsert(search_option, user_data)
+    return ResponseTemplate(200, {'message': 'Create user successfully'}).return_response()
 
 
 def delete_user():
@@ -50,7 +62,6 @@ def delete_user():
 
 def create_account():
     args = request.json
-    search_option = dict()
     username = args.get('username')
     password = args.get('password')
     user_id = args.get('user_id')
@@ -79,3 +90,35 @@ def self_user_info(current_user):
     data = Users().get_user(user_id)
     data.pop('_id')
     return ResponseTemplate(200, {'message': 'Get user successfully', 'data': data}).return_response()
+
+
+@validate_token
+def get_student_info_by_class(current_user):
+    args = request.json
+    user_id = args.get('user_id') if args.get('user_id') else None
+    class_name = args.get('class_name')
+    search_user_query = {
+            "school.department.major.class.class_name": class_name
+        }
+    if user_id:
+        search_user_query.update({'user_id': user_id})
+    users = Users().aggregate_data([{"$match": search_user_query}])
+    users = list(users)
+    results = list()
+    for user in users:
+        diplomas = Diplomas().find_one({'user_id': user.get('user_id')})
+        diplomas_user = dict()
+        diplomas_user['user_id'] = user.get('user_id')
+        diplomas_user['username'] = user.get('username')
+        if diplomas:
+            diplomas_data = dict()
+            diplomas_data['awarded_date'] = diplomas.get('awarded_date')
+            diplomas_data['awarded_place'] = diplomas.get('awarded_place')
+            diplomas_data['degree_awarder'] = diplomas.get('degree_awarder')
+            diplomas_data['id_graduate_certification'] = diplomas.get('id_graduate_certification')
+            diplomas_data['transcript'] = diplomas.get('transcript')
+        else:
+            diplomas_data = {}
+        diplomas_user['diplomas'] = diplomas_data
+        results.append(diplomas_user)
+    return ResponseTemplate(200, {'message': 'Get list student successfully', 'data': results}).return_response()
