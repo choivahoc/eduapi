@@ -318,7 +318,7 @@ paths:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.schools_controller"
 
-  # schools
+  # diplomas
   /diplomas:
     get:
       tags:
@@ -358,6 +358,41 @@ paths:
           schema:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.diplomas_controller"
+    post:
+      tags:
+        - "diplomas"
+      summary: "create a diplomas"
+      description: "This api is used to create diplomas."
+      operationId: "create_diplomas"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Response message after successfully get a schools"
+          schema:
+            properties:
+              message:
+                type: string
+                example: " get user successfully"
+              data:
+                type: string
+                example: "{}"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.diplomas_controller"
+
 
   /diplomas/point:
     post:
