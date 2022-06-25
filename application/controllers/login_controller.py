@@ -25,11 +25,3 @@ def login():
             raise InvalidParameter(error_code=4001000, params='username or password')
     else:
         raise InvalidParameter(error_code=4001000, params='username or password')
-
-
-def edit_user():
-    return jsonify({'message': 'edit user success'})
-
-
-def delete_user():
-    return jsonify({'message': 'delete user success'})

@@ -48,16 +48,14 @@ def add_user(current_user):
 
 
 @validate_token
-def edit_user(current_user, user_id):
-    args = request.json
-    user_data = args.get('user_data')
+def edit_user(current_user, user_id, user_data):
     search_option = {"user_id": user_id}
     Users().upsert(search_option, user_data)
-    return ResponseTemplate(200, {'message': 'Create user successfully'}).return_response()
+    return ResponseTemplate(200, {'message': 'Edit user successfully'}).return_response()
 
 
 def delete_user():
-    return jsonify({'message': 'delete user success'})
+    return jsonify({'message': 'Delete user success'})
 
 
 def create_account():
@@ -89,7 +87,7 @@ def self_user_info(current_user):
     user_id = current_user['user_id']
     data = Users().get_user(user_id)
     data.pop('_id')
-    return ResponseTemplate(200, {'message': 'Get user successfully', 'data': data}).return_response()
+    return ResponseTemplate(200, {'message': 'Get self user successfully', 'data': data}).return_response()
 
 
 @validate_token

@@ -1,3 +1,5 @@
+from plistlib import Data
+
 from flask import request
 
 from application.exceptions import InvalidParameter
@@ -25,7 +27,7 @@ def get_diplomas(current_user):
     for data in datas:
         data.pop('_id')
         results.append(data)
-    return ResponseTemplate(200, {'message': 'Get list school successfully', 'data': results,
+    return ResponseTemplate(200, {'message': 'Get list diplomas successfully', 'data': results,
                                   'count': datas.count()}).return_response()
 
 
@@ -44,7 +46,14 @@ def create_diplomas():
         Users().update_user(user, user_id)
     else:
         raise InvalidParameter(error_code=4001000, params='user_id')
-    return ResponseTemplate(200, {'message': 'Create account successfully'}).return_response()
+    return ResponseTemplate(200, {'message': 'Create diplomas successfully'}).return_response()
+
+
+@validate_token
+def edit_diplomas(current_user, user_id, diplomas_data):
+    search_option = {"user_id": user_id}
+    Diplomas().upsert(search_option, diplomas_data)
+    return ResponseTemplate(200, {'message': 'Edit diplomas successfully'}).return_response()
 
 
 @validate_token
