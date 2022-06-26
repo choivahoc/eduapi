@@ -1,5 +1,3 @@
-from plistlib import Data
-
 from flask import request
 
 from application.exceptions import InvalidParameter
