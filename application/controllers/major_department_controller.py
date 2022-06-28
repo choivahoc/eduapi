@@ -25,6 +25,12 @@ def list_department(current_user):
         results = list()
         for data in datas:
             data.pop('_id')
+            major_data = list()
+            majors = Majors().find({'department_id': data.get('department_id')})
+            for major in majors:
+                major.pop('_id')
+                major_data.append(major)
+            data['major'] = major_data
             results.append(data)
     except Exception as e:
         raise InvalidParameter(error_code=4001002, params='get major error')

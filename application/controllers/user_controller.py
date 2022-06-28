@@ -100,6 +100,7 @@ def get_student_info_by_class(current_user):
         }
     if user_id:
         search_user_query.update({'user_id': user_id})
+    print(search_user_query)
     users = Users().aggregate_data([{"$match": search_user_query}])
     users = list(users)
     results = list()
@@ -108,6 +109,10 @@ def get_student_info_by_class(current_user):
         diplomas_user = dict()
         diplomas_user['user_id'] = user.get('user_id')
         diplomas_user['username'] = user.get('username')
+        diplomas_user['full_name'] = user.get('full_name')
+        diplomas_user['email'] = user.get('email')
+        diplomas_user['gender'] = user.get('profile').get('gender')
+        diplomas_user['date_of_birth'] = user.get('profile').get('date_of_birth')
         if diplomas:
             diplomas_data = dict()
             diplomas_data['awarded_date'] = diplomas.get('awarded_date')
@@ -117,6 +122,6 @@ def get_student_info_by_class(current_user):
             diplomas_data['transcript'] = diplomas.get('transcript')
         else:
             diplomas_data = {}
-        diplomas_user['diplomas'] = diplomas_data
+        diplomas_user['student_diplomas'] = diplomas_data
         results.append(diplomas_user)
     return ResponseTemplate(200, {'message': 'Get list student successfully', 'data': results}).return_response()

@@ -7,6 +7,7 @@ from models.mongodb import BaseModel
 class Majors(Document, BaseModel):
     major_id = StringField()
     major_name = StringField()
+    _class = ListField()
     department_id = StringField()
 
     def __init__(self, *args, **values):
@@ -18,5 +19,6 @@ class Majors(Document, BaseModel):
         return {
             'major_id': self.major_id,
             'major_name': self.major_name,
+            '_class': self._class,
             'department_id': self.department_id
         }
