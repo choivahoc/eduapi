@@ -1,8 +1,13 @@
-from flask import request
+import uuid
+
+from flask import request, current_app
+import requests
 
 from application.exceptions import InvalidParameter
 from application.security_jwt import validate_token
 from helpers.service_helper import ResponseTemplate
+# from helpers.utils import nft_url, path_url_nft
+from helpers.utils import auto_gen_id
 from models.mongodb.diplomas import Diplomas
 from models.mongodb.user import Users
 
@@ -75,3 +80,39 @@ def upsert_diplomas_point(current_user):
     else:
         raise InvalidParameter(error_code=4001000, params='user_id')
     return ResponseTemplate(200, {'message': 'Edit point successfully'}).return_response()
+
+
+@validate_token
+def nft_diplomas(current_user):
+    body = request.json
+    if body and body.get('diplomas_id'):
+        diplomas_id = body.get('diplomas_id')
+        diplomas = Diplomas().find_one({'diplomas_id': diplomas_id})
+        if not diplomas:
+            raise InvalidParameter(error_code=4001009, params='diplomas_id')
+    else:
+        raise InvalidParameter(error_code=4001009, params='diplomas_id')
+
+    if body and body.get('nft_diplomas_data'):
+        nft_diplomas_data = body.get('nft_diplomas_data')
+    else:
+        raise InvalidParameter(error_code=4001009, params='diplomas_id')
+
+    if body and body.get('image_data'):
+        image_data = body.get('image_data')
+    else:
+        raise InvalidParameter(error_code=4001009, params='image_data')
+
+    user_id = diplomas.get('user_id')
+    diplomas_upsert = {
+        "nft_image": image_data,
+        "nft_data": nft_diplomas_data,
+    }
+    Diplomas().upsert({'diplomas_id': diplomas_id}, diplomas_upsert)
+    check_nft_user = {
+        "is_nft_diplomas": True
+    }
+    Users().upsert({"user_id": user_id}, check_nft_user)
+    return ResponseTemplate(200, {'message': "nft diplomas success"}).return_response()
+
+

@@ -1,11 +1,8 @@
 import jwt
-from jose import jwt as jose_jwt
-from flask import current_app, abort, request
+from flask import current_app, request
 import datetime
 from application.exceptions import Unauthorized
 from functools import wraps
-from models import User, Tenant, db
-import time
 
 
 def encode_jwt(payload):

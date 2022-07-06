@@ -3,6 +3,13 @@ import os
 import yaml
 from passlib.handlers.pbkdf2 import pbkdf2_sha256
 
+# nft_url = "http://nftapi.choivahoc.vn/"
+# path_url_nft = r"Token/Mint"
+
+
+class MySQL:
+    URI_SQL = 'mysql://eduplay:b4so@2Ad8@127.0.0.1:3306/choivahoc'
+
 
 class Mongo:
     DB = os.environ.get('MONGO_DB')

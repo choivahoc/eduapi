@@ -38,8 +38,19 @@ class Diplomas(Document, BaseModel):
             'transcript': self.transcript
         }
 
+    @staticmethod
+    def serialize_nft(diplomas):
+        return {
+            'user_id': diplomas.get("user_id"),  # id sinh viên
+            'graduate_info': diplomas.get("graduate_info")[0].get("vi"),
+            'academic_ability': diplomas.get("academic_ability"),  # học lực
+            'degree_awarder': diplomas.get("degree_awarder"),  # thông tin người cấp
+            'id_graduate_certification': diplomas.get("id_graduate_certification"),  # số hiệu bằng, mã bằng
+        }
+
     def list_diplomas(self, search_option):
         try:
             return self.find(search_option)
         except Exception as e:
             print('Users::list_all_user():message error: %s' % str(e))
+
