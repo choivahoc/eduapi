@@ -1,10 +1,14 @@
 import hashlib
-import os
 import yaml
 from passlib.handlers.pbkdf2 import pbkdf2_sha256
-
+import base64
+from PIL import Image
+from io import BytesIO
+import uuid
+import os
 # nft_url = "http://nftapi.choivahoc.vn/"
 # path_url_nft = r"Token/Mint"
+from data.images import IMAGE_ROOT_DIR
 
 
 class MySQL:
@@ -96,3 +100,15 @@ def hashsum_password_local(password, user_name):
     except Exception as e:
         print(e)
         return None
+
+
+def base64_to_images(data_images):
+    im = Image.open(BytesIO(base64.b64decode(data_images)))
+    images_name = str(uuid.uuid4()) + '.png'
+    path_save = IMAGE_ROOT_DIR + "\\" + images_name
+    im.save(path_save, 'PNG')
+    return path_save
+
+
+if __name__ == '__main__':
+    print(IMAGE_ROOT_DIR)

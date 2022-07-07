@@ -564,13 +564,54 @@ paths:
                 type: string
                 description: "diplomas_id of the user you want to nft (required)"
                 example: "asdasdasd"
-              nft_diplomas_data:
-                type: object
-                description: "nft_diplomas_data of the user you want to nft (required)"
-                example: "asdasdasd"
               image_data:
                 type: object
                 description: "image_data of the user you want to nft (required)"
+                example: "asdasdasd"
+      responses:
+        200:
+          description: "Response message after successfully added a user"
+          schema:
+            properties:
+              message:
+                type: string
+                example: "Edit point successfully"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.diplomas_controller"
+
+  /images/nft:
+    post:
+      tags:
+        - "diplomas"
+      summary: "nft diplomas"
+      description: "This api is used to nft diplomas."
+      operationId: "nft_images"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            required:
+              - data_image
+            properties:
+              data_image:
+                type: string
+                description: "images_data of the user you want to nft (required)"
                 example: "asdasdasd"
       responses:
         200:

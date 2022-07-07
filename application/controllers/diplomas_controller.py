@@ -1,4 +1,4 @@
-import uuid
+import json
 
 from flask import request, current_app
 import requests
@@ -6,8 +6,8 @@ import requests
 from application.exceptions import InvalidParameter
 from application.security_jwt import validate_token
 from helpers.service_helper import ResponseTemplate
-# from helpers.utils import nft_url, path_url_nft
-from helpers.utils import auto_gen_id
+# from helpers.utils import auto_gen_id
+from helpers.utils import base64_to_images
 from models.mongodb.diplomas import Diplomas
 from models.mongodb.user import Users
 
@@ -93,26 +93,72 @@ def nft_diplomas(current_user):
     else:
         raise InvalidParameter(error_code=4001009, params='diplomas_id')
 
-    if body and body.get('nft_diplomas_data'):
-        nft_diplomas_data = body.get('nft_diplomas_data')
-    else:
-        raise InvalidParameter(error_code=4001009, params='diplomas_id')
-
     if body and body.get('image_data'):
         image_data = body.get('image_data')
     else:
         raise InvalidParameter(error_code=4001009, params='image_data')
 
     user_id = diplomas.get('user_id')
+    user = Users().find_one({'user_id': user_id})
+    if not user:
+        raise InvalidParameter(error_code=4001009, params='user')
+    diploma_data = Diplomas().serialize_nft(diplomas)
+    diplomas_body_nft = {
+        "token_id": user_id,
+        "diplomas": diploma_data,
+        "images": image_data,
+    }
+
+    data = request_nft_diplomas(diplomas_body_nft)
+
     diplomas_upsert = {
         "nft_image": image_data,
-        "nft_data": nft_diplomas_data,
+        "nft_data": data,
     }
+
     Diplomas().upsert({'diplomas_id': diplomas_id}, diplomas_upsert)
     check_nft_user = {
         "is_nft_diplomas": True
     }
     Users().upsert({"user_id": user_id}, check_nft_user)
-    return ResponseTemplate(200, {'message': "nft diplomas success"}).return_response()
+    return ResponseTemplate(200, {'data': diplomas_upsert}).return_response()
 
 
+@validate_token
+def nft_images(current_user, body):
+    if body and body.get('data_image'):
+        data_image = body.get('data_image')
+    else:
+        raise InvalidParameter(error_code=4001009, params='data_image')
+    image_path = base64_to_images(data_image)
+    url = current_app.config.get('NFT_IMAGE_URL')
+    files = [
+        ('image', ('hdmt.jpg', open(image_path, 'rb'), 'image/jpeg'))
+    ]
+    headers = {
+        'accept': 'application/json'
+    }
+    try:
+        response = requests.request("POST", url, headers=headers, files=files, timeout=10)
+        data = response.json()
+    except Exception as e:
+        data = "Error"
+        print(e)
+    return ResponseTemplate(200, {'images_data': data}).return_response()
+
+
+def request_nft_diplomas(body):
+
+    url = current_app.config.get('NFT_URL')
+    payload = json.dumps(body)
+    headers = {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+    try:
+        response = requests.request("POST", url, headers=headers, data=payload, timeout=10)
+        data = response.json()
+    except Exception as e:
+        data = "Error"
+        print(e)
+    return data

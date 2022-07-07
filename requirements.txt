@@ -37,3 +37,4 @@ mongoengine==0.20.0
 passlib==1.7.1
 PyMySQL==0.8.1
 peewee==2.10.1
+Pillow==9.2.0
