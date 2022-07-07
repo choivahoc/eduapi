@@ -8,7 +8,9 @@ import uuid
 import os
 # nft_url = "http://nftapi.choivahoc.vn/"
 # path_url_nft = r"Token/Mint"
-from data.images import IMAGE_ROOT_DIR
+# from data.images import IMAGE_ROOT_DIR
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class MySQL:
@@ -105,10 +107,6 @@ def hashsum_password_local(password, user_name):
 def base64_to_images(data_images):
     im = Image.open(BytesIO(base64.b64decode(data_images)))
     images_name = str(uuid.uuid4()) + '.png'
-    path_save = IMAGE_ROOT_DIR + "\\" + images_name
+    path_save = ROOT_DIR + "\\data_image\\" + images_name
     im.save(path_save, 'PNG')
     return path_save
-
-
-if __name__ == '__main__':
-    print(IMAGE_ROOT_DIR)
