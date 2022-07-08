@@ -525,7 +525,7 @@ paths:
             properties:
               message:
                 type: string
-                example: "Edit point successfully"
+                example: "nft successfully"
         401:
           description: "Unauthorized Request"
           schema:
@@ -590,6 +590,45 @@ paths:
             $ref: "#/definitions/ApiResponseError400"
       x-swagger-router-controller: "application.controllers.diplomas_controller"
 
+  /diplomas/nft/{user_id}:
+    get:
+      tags:
+        - "diplomas"
+      summary: "nft diplomas"
+      description: "This api is used to nft diplomas."
+      operationId: "request_get_nft_diplomas"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "user_id"
+          type: "string"
+          required: true
+          description: "user_id"
+      responses:
+        200:
+          description: "Response message after successfully added a user"
+          schema:
+            properties:
+              message:
+                type: string
+                example: "Get nft successfully"
+        401:
+          description: "Unauthorized Request"
+          schema:
+            $ref: "#/definitions/ApiResponseError401"
+        403:
+          description: "Invalid Permission"
+          schema:
+            $ref: "#/definitions/ApiResponseError403"
+        400:
+          description: "User's Error"
+          schema:
+            $ref: "#/definitions/ApiResponseError400"
+      x-swagger-router-controller: "application.controllers.diplomas_controller"
+
   /images/nft:
     post:
       tags:
@@ -620,7 +659,7 @@ paths:
             properties:
               message:
                 type: string
-                example: "Edit point successfully"
+                example: "Nft successfully"
         401:
           description: "Unauthorized Request"
           schema:

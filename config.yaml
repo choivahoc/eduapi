@@ -12,6 +12,7 @@ TOKEN_EXPIRATION_TIME: 86400         #seconds
 SQLALCHEMY_DATABASE_URI: ""
 SQLALCHEMY_TRACK_MODIFICATIONS: false
 NFT_URL: "http://nftapi.choivahoc.vn/Token/Mint"
+GET_NFT_URL: "http://nftapi.choivahoc.vn/Token/Get"
 NFT_IMAGE_URL: "http://nftapi.choivahoc.vn/Image/Upload"
 
 PUBLIC_KEY: |

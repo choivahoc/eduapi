@@ -142,8 +142,9 @@ def nft_images(current_user, body):
         response = requests.request("POST", url, headers=headers, files=files, timeout=10)
         data = response.json()
     except Exception as e:
-        data = "Error"
         print(e)
+        raise InvalidParameter(error_code=4001018, params='nft this images')
+
     return ResponseTemplate(200, {'images_data': data}).return_response()
 
 
@@ -158,7 +159,29 @@ def request_nft_diplomas(body):
     try:
         response = requests.request("POST", url, headers=headers, data=payload, timeout=10)
         data = response.json()
+        if response.status_code == 400:
+            raise InvalidParameter(error_code=4001018, params='nft this diplomas')
     except Exception as e:
-        data = "Error"
         print(e)
+        raise InvalidParameter(error_code=4001018, params='nft this diplomas')
     return data
+
+
+@validate_token
+def request_get_nft_diplomas(current_user, user_id):
+
+    url = current_app.config.get('GET_NFT_URL')
+    print(user_id)
+    url = url + '/' + user_id
+    headers = {
+        'accept': 'application/json',
+    }
+    try:
+        response = requests.request("GET", url, headers=headers, timeout=10)
+        data = response.json()
+        if response.status_code == 400:
+            raise InvalidParameter(error_code=4001018, params='get nft this diplomas')
+    except Exception as e:
+        print(e)
+        raise InvalidParameter(error_code=4001018, params='get nft this diplomas')
+    return ResponseTemplate(200, {'nft_diplomas_data': data}).return_response()
