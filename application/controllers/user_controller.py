@@ -69,7 +69,7 @@ def create_account():
     print(check_user.count())
     print({'user_id': {'$ne': user_id}, 'username': username})
     if check_user.count():
-        raise InvalidParameter(error_code=4001000, params='username')
+        raise InvalidParameter(error_code=4001002, params='username already exist')
 
     if user:
         hash_password = hashsum_password_local(password, username)

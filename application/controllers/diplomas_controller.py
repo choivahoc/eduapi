@@ -152,6 +152,7 @@ def request_nft_diplomas(body):
 
     url = current_app.config.get('NFT_URL')
     payload = json.dumps(body)
+    print(payload)
     headers = {
         'accept': 'application/json',
         'Content-Type': 'application/json'
